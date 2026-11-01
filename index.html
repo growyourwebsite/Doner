@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>USTAM Döner Rotterdam | Echte döner, elke dag vers bereid</title>
+  <meta name="description" content="Huisgemaakte döner van vlees of kip, meze en Turkse rijstpudding aan de Groene Hilledijk in Rotterdam-Zuid. 4,9 sterren uit 457 Google-reviews. Di–zo 13:00–22:00.">
+  <meta name="robots" content="noindex"><!-- demo: verwijderen bij livegang -->
+  <link rel="canonical" href="https://www.ustamdoner.nl/">
+  <meta property="og:title" content="USTAM Döner Rotterdam">
+  <meta property="og:description" content="Echte döner, elke dag vers bereid door onze eigen chef.">
+  <meta property="og:image" content="img/portie.jpg">
+  <meta property="og:type" content="restaurant">
+  <meta name="theme-color" content="#161412">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23161412'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='34' font-weight='700' text-anchor='middle' fill='%23f3ece1'%3EU%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="vendor/lenis.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="site-data.js"></script>
+</head>
+<body>
+  <a class="skip" href="#menu">Direct naar de menukaart</a>
+  <div id="demobalk" class="demobalk" hidden></div>
+
+  <header class="header" id="header">
+    <div class="wrap header__in">
+      <a href="#top" class="logo" aria-label="USTAM Döner, naar boven">
+        <span class="logo__mark" aria-hidden="true">U</span>
+        <span>USTAM<small>Döner</small></span>
+      </a>
+      <nav class="nav" id="nav" aria-label="Hoofdmenu">
+        <a href="#menu">Menukaart</a>
+        <a href="#verhaal">Ons verhaal</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#bezoek">Bezoek</a>
+      </nav>
+      <span class="open-status" id="open-status" aria-live="polite"></span>
+      <a class="knop knop--klein header__bel" data-tel>Bel ons</a>
+      <button class="menuknop" id="menuknop" aria-expanded="false" aria-controls="nav">Menu</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap hero__in">
+        <div class="hero__tekst">
+          <p class="eyebrow hero-in">TURKS DÖNER RESTAURANT · ROTTERDAM-ZUID</p>
+          <h1 class="hero-in">Echte döner,<br><em>elke dag vers</em> bereid</h1>
+          <p class="lead hero-in">Geen kant-en-klaar product. Onze chef kiest elke dag het vlees en bereidt de döner zelf, met eigen kruiden en zonder toevoegingen. Proef het verschil aan de Groene Hilledijk.</p>
+          <div class="knoppen hero-in">
+            <a class="knop" href="#menu">Bekijk de menukaart</a>
+            <a class="knop knop--licht" data-route target="_blank" rel="noopener">Plan je route</a>
+          </div>
+          <a class="score hero-in" id="hero-score" target="_blank" rel="noopener"></a>
+        </div>
+        <figure class="hero__beeld hero-in">
+          <picture><source srcset="img/portie.webp" type="image/webp"><img src="img/portie.jpg" alt="Portie döner met warm brood, salade, tomaat en rode ui" width="434" height="602" fetchpriority="high"></picture>
+          <figcaption>Portie döner, vlees € 15 · kip € 13</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- KERNCIJFERS -->
+    <section class="cijfers" aria-label="In het kort">
+      <div class="wrap cijfers__in">
+        <div class="cijfer"><strong><span data-tel-op="4.9" data-decimalen="1">4,9</span> ★</strong><span>gemiddeld op Google</span></div>
+        <div class="cijfer"><strong data-tel-op="457">457</strong><span>Google-reviews</span></div>
+        <div class="cijfer"><strong>Eigen chef</strong><span>döner elke dag vers</span></div>
+        <div class="cijfer"><strong>Di–zo</strong><span>13:00 tot 22:00</span></div>
+      </div>
+    </section>
+
+    <!-- VERHAAL -->
+    <section class="sectie" id="verhaal">
+      <div class="wrap twee">
+        <figure class="foto-stapel reveal">
+          <picture><source srcset="img/spies.webp" type="image/webp"><img src="img/spies.jpg" alt="Verse döner aan het spit" width="334" height="422" loading="lazy"></picture>
+          <picture class="foto-stapel__klein"><source srcset="img/broodje.webp" type="image/webp"><img src="img/broodje.jpg" alt="Broodje döner met tomaat, rode ui en peterselie" width="438" height="535" loading="lazy"></picture>
+        </figure>
+        <div class="reveal">
+          <p class="eyebrow">ONS VERHAAL</p>
+          <h2>Ustam betekent ‘mijn meester’</h2>
+          <div id="verhaal-tekst" class="verhaal"></div>
+          <ul class="vinkjes">
+            <li><strong>Elke dag vers</strong> geselecteerd vlees</li>
+            <li><strong>Eigen kruiden</strong> van de chef</li>
+            <li><strong>Traditioneel bereid</strong>, zonder toevoegingen</li>
+            <li><strong>Vlees of kip</strong>, bij elk gerecht</li>
+          </ul>
+          <a class="knop" href="#menu">Naar de menukaart</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MENU -->
+    <section class="sectie sectie--creme" id="menu">
+      <div class="wrap">
+        <div class="kop-rij reveal">
+          <div>
+            <p class="eyebrow">MENUKAART</p>
+            <h2>Wat eet je vandaag?</h2>
+            <p class="intro">Elk döner-gerecht kies je met vlees of kip. Tik op een prijs om het in je lijstje te zetten, dan zie je meteen wat je kwijt bent.</p>
+          </div>
+        </div>
+        <div class="tabs" role="tablist" aria-label="Menukaart" id="tabs"></div>
+        <div class="menu-grid">
+          <div id="menu-panelen"></div>
+          <aside class="lijst" id="lijst" aria-labelledby="lijst-kop" data-lenis-prevent>
+            <div class="lijst__kop">
+              <h3 id="lijst-kop">Mijn lijstje</h3>
+              <button class="lijst__sluit" id="lijst-sluit" type="button" aria-label="Lijstje sluiten">×</button>
+            </div>
+            <ul class="lijst__regels" id="lijst-regels" aria-live="polite"></ul>
+            <p class="lijst__totaal"><span>Totaal</span><strong id="lijst-totaal">€ 0,00</strong></p>
+            <a class="knop knop--blok" data-tel id="lijst-bel">Bel om te bestellen</a>
+            <button class="knop knop--licht knop--blok" id="lijst-kopieer" type="button">Kopieer mijn lijstje</button>
+            <p class="klein">Prijzen volgens de menukaart in de zaak, inclusief btw. Bel om je bestelling af te stemmen.</p>
+          </aside>
+        </div>
+      </div>
+      <button class="lijstbalk" id="lijstbalk" type="button" hidden aria-controls="lijst" aria-expanded="false"></button>
+    </section>
+
+    <!-- SFEER -->
+    <section class="sectie" id="sfeer">
+      <div class="wrap">
+        <div class="reveal">
+          <p class="eyebrow">KOM BINNEN</p>
+          <h2>Rustig zitten en uitgebreid eten</h2>
+          <p class="intro">Warm hout, bakstenen muren en tijd voor je bord. Volgens Google blijven gasten hier gemiddeld één tot vier uur. Met thee na, natuurlijk.</p>
+        </div>
+        <div class="galerij">
+          <figure class="reveal"><picture><source srcset="img/interieur.webp" type="image/webp"><img src="img/interieur.jpg" alt="Het restaurant met houten tafels en bakstenen muren" width="450" height="626" loading="lazy"></picture></figure>
+          <figure class="reveal"><picture><source srcset="img/entree.webp" type="image/webp"><img src="img/entree.jpg" alt="De rode telefooncel 'Alo Döner' bij de ingang" width="334" height="280" loading="lazy"></picture></figure>
+          <figure class="reveal"><picture><source srcset="img/portie.webp" type="image/webp"><img src="img/portie.jpg" alt="Portie döner op een zilveren schaal" width="434" height="602" loading="lazy"></picture></figure>
+          <figure class="reveal"><picture><source srcset="img/spies.webp" type="image/webp"><img src="img/spies.jpg" alt="Vlees- en kipdöner aan het spit" width="334" height="422" loading="lazy"></picture></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="sectie sectie--donker" id="reviews">
+      <div class="wrap">
+        <div class="reviews__kop reveal">
+          <div>
+            <p class="eyebrow">WAT GASTEN ZEGGEN</p>
+            <h2>4,9 sterren uit 457 reviews</h2>
+          </div>
+          <a class="knop knop--licht-op-donker" id="reviews-link" target="_blank" rel="noopener">Alle reviews op Google</a>
+        </div>
+        <div class="tags reveal" id="review-tags" aria-label="Vaak genoemd in reviews"></div>
+        <div class="reviews" id="reviews-lijst"></div>
+      </div>
+    </section>
+
+    <!-- BEZOEK -->
+    <section class="sectie" id="bezoek">
+      <div class="wrap twee">
+        <figure class="reveal bezoek__foto"><picture><source srcset="img/gevel.webp" type="image/webp"><img src="img/gevel.jpg" alt="De gevel van USTAM Döner aan de Groene Hilledijk" width="740" height="530" loading="lazy"></picture></figure>
+        <div class="reveal">
+          <p class="eyebrow">BEZOEK</p>
+          <h2>Kom langs in Rotterdam-Zuid</h2>
+          <address id="adres"></address>
+          <table class="tijden" id="tijden" aria-label="Openingstijden"></table>
+          <div class="knoppen">
+            <a class="knop" data-route target="_blank" rel="noopener">Route</a>
+            <a class="knop knop--licht" data-tel>Bellen</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="sectie sectie--creme" id="vragen">
+      <div class="wrap smal">
+        <p class="eyebrow">VRAGEN</p>
+        <h2>Goed om te weten</h2>
+        <div class="faq" id="faq"></div>
+      </div>
+    </section>
+
+    <section class="slot">
+      <div class="wrap">
+        <h2>Honger gekregen?</h2>
+        <p>Dinsdag tot en met zondag vanaf 13:00 uur. Tot zo!</p>
+        <div class="knoppen knoppen--midden">
+          <a class="knop knop--wit" data-route target="_blank" rel="noopener">Plan je route</a>
+          <a class="knop knop--licht-op-donker" href="#menu">Bekijk de menukaart</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer__in" id="footer"></div>
+    <div class="wrap footer__onder" id="footer-onder"></div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="vendor/gsap.min.js" defer></script>
+  <script src="vendor/ScrollTrigger.min.js" defer></script>
+  <script src="vendor/lenis.min.js" defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>

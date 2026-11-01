@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Beheer</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="site-data.js"></script>
+  <style>
+    table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+    th, td { text-align: left; padding: 6px; border-bottom: 1px solid var(--lijn); vertical-align: top; }
+    td input, td select { margin: 0; padding: 6px 8px; }
+    .balk { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0; }
+    .tabelwrap { overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <div class="demobalk">Demo-beheer: wijzigingen worden alleen in deze browser opgeslagen. Gebruik "Exporteer" om ze echt te publiceren.</div>
+  <main class="sectie"><div class="wrap">
+    <p class="eyebrow">BEHEER</p>
+    <h1>Aanbod en teksten</h1>
+
+    <h2>Hero</h2>
+    <label>Kop <input id="b-kop"></label>
+    <label>Tekst <textarea id="b-tekst" rows="3"></textarea></label>
+
+    <h2 class="mt">Aanbod</h2>
+    <div class="tabelwrap"><table>
+      <thead><tr><th>Naam</th><th>Uitvoering</th><th>Status</th><th>Prijs p/m</th><th>Specs (komma's)</th><th></th></tr></thead>
+      <tbody id="b-rijen"></tbody>
+    </table></div>
+    <div class="balk"><button class="knop knop--licht knop--klein" id="b-nieuw" type="button">+ Auto toevoegen</button></div>
+
+    <h2 class="mt">Veelgestelde vragen</h2>
+    <p class="klein">Eén vraag per blok: eerste regel de vraag, daarna het antwoord. Blokken scheiden met een lege regel.</p>
+    <textarea id="b-faq" rows="10"></textarea>
+
+    <div class="balk">
+      <button class="knop" id="b-opslaan" type="button">Opslaan en bekijken</button>
+      <button class="knop knop--licht" id="b-export" type="button">Exporteer site-data.js</button>
+      <button class="knop knop--licht" id="b-reset" type="button">Terug naar origineel</button>
+    </div>
+    <p class="melding" id="b-melding" hidden></p>
+  </div></main>
+
+  <script>
+  (function () {
+    let S;
+    try { S = JSON.parse(localStorage.getItem("site-data")) || window.SITE; } catch (e) { S = window.SITE; }
+    S = JSON.parse(JSON.stringify(S));
+    const $ = (s) => document.querySelector(s);
+    const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const statussen = S.filters.filter((f) => f !== "Alles").concat(["Gereserveerd", "Op bestelling"]).filter((v, i, a) => a.indexOf(v) === i);
+
+    $("#b-kop").value = S.hero.kop;
+    $("#b-tekst").value = S.hero.tekst;
+    $("#b-faq").value = S.faq.map(([v, a]) => v + "\n" + a).join("\n\n");
+
+    function rij(p, i) {
+      return `<tr data-i="${i}">
+        <td><input data-k="naam" value="${esc(p.naam)}"></td>
+        <td><input data-k="uitvoering" value="${esc(p.uitvoering)}"></td>
+        <td><select data-k="status">${statussen.map((s) => `<option ${s === p.status ? "selected" : ""}>${esc(s)}</option>`).join("")}</select></td>
+        <td><input data-k="prijsMaand" type="number" min="0" value="${p.prijsMaand}"></td>
+        <td><input data-k="specs" value="${esc(p.specs.join(", "))}"></td>
+        <td><button type="button" class="knop knop--licht knop--klein" data-weg="${i}" aria-label="Verwijder ${esc(p.naam)}">×</button></td></tr>`;
+    }
+    const teken = () => ($("#b-rijen").innerHTML = S.producten.map(rij).join(""));
+    teken();
+
+    function lees() {
+      S.hero.kop = $("#b-kop").value;
+      S.hero.tekst = $("#b-tekst").value;
+      document.querySelectorAll("#b-rijen tr").forEach((tr) => {
+        const p = S.producten[tr.dataset.i];
+        tr.querySelectorAll("[data-k]").forEach((el) => {
+          const k = el.dataset.k;
+          p[k] = k === "prijsMaand" ? +el.value : k === "specs" ? el.value.split(",").map((s) => s.trim()).filter(Boolean) : el.value;
+        });
+      });
+      S.faq = $("#b-faq").value.split(/\n\s*\n/).map((b) => b.trim().split("\n")).filter((b) => b[0])
+        .map(([v, ...a]) => [v.trim(), a.join(" ").trim()]);
+    }
+    const melding = (t) => { const m = $("#b-melding"); m.hidden = false; m.textContent = t; };
+
+    $("#b-rijen").addEventListener("click", (e) => {
+      const i = e.target.dataset.weg; if (i === undefined) return;
+      lees(); S.producten.splice(+i, 1); teken();
+    });
+    $("#b-nieuw").onclick = () => {
+      lees();
+      S.producten.push({ id: "auto-" + Date.now(), naam: "Nieuwe auto", uitvoering: "", status: statussen[0], specs: [], prijsMaand: 0, tags: [], foto: "" });
+      teken();
+    };
+    $("#b-opslaan").onclick = () => {
+      lees();
+      try { localStorage.setItem("site-data", JSON.stringify(S)); location.href = "index.html"; }
+      catch (e) { melding("Opslaan lukt niet in deze browser (privévenster?). Gebruik Exporteer."); }
+    };
+    $("#b-export").onclick = () => {
+      lees();
+      const blob = new Blob(["window.SITE = " + JSON.stringify(S, null, 2) + ";\n"], { type: "text/javascript" });
+      const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: "site-data.js" });
+      a.click(); URL.revokeObjectURL(a.href);
+      melding("site-data.js gedownload. Vervang daarmee het bestand op de server.");
+    };
+    $("#b-reset").onclick = () => {
+      try { localStorage.removeItem("site-data"); } catch (e) {}
+      location.reload();
+    };
+  })();
+  </script>
+</body>
+</html>

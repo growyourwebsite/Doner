@@ -1,0 +1,176 @@
+/* Pas de merktokens aan op de huisstijl van de klant. */
+:root {
+  --merk: #0f2a4a;
+  --accent: #e8590c;
+  --tekst: #1c2430;
+  --zacht: #5b6573;
+  --lijn: #dfe3e8;
+  --licht: #f4f6f8;
+  --wit: #fff;
+  --radius: 10px;
+  --schaduw: 0 2px 10px rgba(15, 42, 74, .08);
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { margin: 0; font: 17px/1.6 var(--font); color: var(--tekst); background: var(--wit); }
+img { max-width: 100%; display: block; }
+a { color: var(--merk); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+h1, h2, h3 { line-height: 1.15; margin: 0 0 .5em; color: var(--merk); }
+h1 { font-size: clamp(2rem, 5vw, 3.4rem); text-transform: uppercase; letter-spacing: -.01em; }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); text-transform: uppercase; }
+.wrap { width: min(1180px, 100% - 32px); margin-inline: auto; }
+.smal { max-width: 760px; }
+.eyebrow { font-size: .8rem; font-weight: 700; letter-spacing: .12em; color: var(--accent); margin: 0 0 .5em; }
+.klein { font-size: .85rem; color: var(--zacht); }
+.mt { margin-top: 1.5em; }
+
+/* Knoppen */
+.knop { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: .7em 1.4em;
+  background: var(--accent); color: #fff; font-weight: 700; text-decoration: none; text-transform: uppercase;
+  letter-spacing: .04em; border: 0; border-radius: var(--radius); cursor: pointer; font-size: .95rem; }
+.knop:hover { filter: brightness(1.08); }
+.knop--licht { background: transparent; color: var(--merk); box-shadow: inset 0 0 0 2px var(--merk); }
+.knop--klein { min-height: 40px; padding: .4em 1em; font-size: .8rem; }
+.knop--wit { background: #fff; color: var(--merk); }
+.knoppen { display: flex; flex-wrap: wrap; gap: 12px; margin: 1.5em 0 .5em; }
+
+/* Demobalk */
+.demobalk { background: #fff4d6; color: #5c4300; font-size: .9rem; padding: 8px 16px; text-align: center; }
+.demobalk button { background: none; border: 0; text-decoration: underline; cursor: pointer; color: inherit; font: inherit; }
+
+/* Header */
+.header { position: sticky; top: 0; z-index: 10; background: var(--wit); border-bottom: 1px solid var(--lijn); }
+.header__in { display: flex; align-items: center; gap: 20px; min-height: 68px; }
+.logo { font-weight: 800; font-size: 1.3rem; text-decoration: none; color: var(--merk); text-transform: uppercase; }
+.logo small { display: block; font-size: .6rem; letter-spacing: .3em; color: var(--accent); }
+.nav { display: flex; gap: 18px; margin-left: auto; }
+.nav a { text-decoration: none; font-weight: 600; font-size: .95rem; }
+.open-status { font-size: .8rem; color: var(--zacht); white-space: nowrap; }
+.open-status::before { content: "●"; margin-right: 4px; color: #c92a2a; }
+.open-status.open::before { color: #2f9e44; }
+.menuknop { display: none; }
+
+/* Hero */
+.hero { background: linear-gradient(135deg, var(--licht), #fff); padding: clamp(40px, 7vw, 90px) 0; }
+.hero__in { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center; }
+.lead { font-size: 1.15rem; max-width: 60ch; }
+.drempel { font-size: .9rem; color: var(--zacht); }
+.uitgelicht { background: var(--wit); border-radius: var(--radius); box-shadow: var(--schaduw); overflow: hidden; }
+.uitgelicht .inhoud { padding: 20px; }
+
+/* Cijfers */
+.cijfers { background: var(--merk); color: #fff; padding: 28px 0; }
+.grid4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.grid2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.cijfer strong { display: block; font-size: 1.5rem; }
+.cijfer span { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; opacity: .8; }
+.grid2 .cijfer { background: var(--wit); padding: 16px; border-radius: var(--radius); color: var(--merk); }
+
+/* Secties */
+.sectie { padding: clamp(48px, 7vw, 96px) 0; }
+.sectie--licht { background: var(--licht); }
+.intro { color: var(--zacht); max-width: 65ch; }
+.twee { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+
+/* Tabs & kaarten */
+.tabs { display: flex; flex-wrap: wrap; gap: 8px; margin: 24px 0; }
+.tabs button { min-height: 40px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--lijn); background: var(--wit);
+  font: inherit; font-size: .9rem; cursor: pointer; }
+.tabs button[aria-selected="true"] { background: var(--merk); color: #fff; border-color: var(--merk); }
+.kaarten { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.kaart { background: var(--wit); border: 1px solid var(--lijn); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+.foto { aspect-ratio: 16/10; background: linear-gradient(135deg, var(--merk), #33507a); color: #fff; display: grid;
+  place-items: center; font-weight: 700; position: relative; text-align: center; padding: 8px; }
+.foto img { width: 100%; height: 100%; object-fit: cover; position: absolute; inset: 0; }
+.badge { position: absolute; top: 10px; left: 10px; background: #2f9e44; color: #fff; font-size: .7rem; font-weight: 700;
+  text-transform: uppercase; padding: 3px 8px; border-radius: 4px; z-index: 1; }
+.badge--binnenkort { background: var(--accent); }
+.badge--gereserveerd { background: #868e96; }
+.kaart .inhoud { padding: 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.kaart h3 { font-size: 1.05rem; margin: 0; text-transform: uppercase; }
+.specs { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 4px 0; }
+.specs li { font-size: .75rem; background: var(--licht); padding: 2px 8px; border-radius: 4px; }
+.prijs { margin-top: auto; display: flex; align-items: end; justify-content: space-between; gap: 8px; }
+.prijs strong { font-size: 1.5rem; color: var(--merk); }
+.prijs small { display: block; font-size: .7rem; color: var(--zacht); text-transform: uppercase; }
+
+/* Calculator */
+.calc { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 24px; }
+.calc__invoer, .calc__uitkomst { background: var(--wit); border-radius: var(--radius); padding: 24px; box-shadow: var(--schaduw); }
+.calc label, fieldset { display: block; margin-bottom: 20px; font-weight: 600; }
+fieldset { border: 0; padding: 0; }
+legend { padding: 0; margin-bottom: 6px; }
+select, input, textarea { width: 100%; font: inherit; padding: 10px 12px; border: 1px solid var(--lijn); border-radius: 8px;
+  margin-top: 4px; background: var(--wit); color: var(--tekst); }
+input[type="range"] { padding: 0; accent-color: var(--accent); }
+.segment { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+.segment button { min-height: 44px; border: 1px solid var(--lijn); background: var(--wit); border-radius: 8px; font: inherit; cursor: pointer; }
+.segment button[aria-pressed="true"] { background: var(--merk); color: #fff; }
+.bedrag { font-size: 2.6rem; font-weight: 800; color: var(--merk); margin: 0; }
+.bedrag small { font-size: .9rem; font-weight: 400; color: var(--zacht); }
+.opbouw { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; font-size: .9rem; border-top: 1px solid var(--lijn); padding-top: 12px; }
+.opbouw dd { margin: 0; font-weight: 600; text-align: right; }
+.vinkjes { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 4px; font-size: .9rem; }
+.vinkjes li::before, .voordelen li::before { content: "✓ "; color: #2f9e44; font-weight: 700; }
+
+/* Keuzehulp */
+.kh { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 24px 0; }
+.kh fieldset { background: var(--licht); padding: 16px; border-radius: var(--radius); }
+.kh .opties { display: flex; flex-wrap: wrap; gap: 6px; }
+.kh button { min-height: 40px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--lijn); background: var(--wit); font: inherit; font-size: .9rem; cursor: pointer; }
+.kh button[aria-pressed="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+.leeg { color: var(--zacht); grid-column: 1 / -1; }
+
+/* Voordelen, stappen, keurmerken */
+.voordelen { list-style: none; padding: 0; display: grid; gap: 12px; }
+.keurmerken { list-style: none; padding: 0; display: grid; gap: 10px; font-size: .95rem; }
+.stappen { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 20px; counter-reset: s; }
+.stappen li { counter-increment: s; background: var(--licht); border-radius: var(--radius); padding: 20px; }
+.stappen li::before { content: counter(s); display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%;
+  background: var(--accent); color: #fff; font-weight: 800; margin-bottom: 10px; }
+.stappen strong { display: block; text-transform: uppercase; color: var(--merk); }
+
+/* Formulier */
+.formulier { display: grid; gap: 4px; margin-top: 20px; }
+.formulier label { font-weight: 600; font-size: .95rem; margin-bottom: 12px; display: block; }
+.rij { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.check { display: flex !important; gap: 10px; align-items: flex-start; font-weight: 400 !important; }
+.check input { width: auto; margin-top: 6px; }
+.honeypot { position: absolute; left: -9999px; }
+input:user-invalid, select:user-invalid { border-color: #c92a2a; }
+.fout { color: #c92a2a; font-size: .8rem; font-weight: 400; display: block; }
+.melding { background: #ebfbee; border: 1px solid #b2f2bb; padding: 12px 16px; border-radius: 8px; }
+
+/* FAQ */
+.faq details { border-bottom: 1px solid var(--lijn); }
+.faq summary { cursor: pointer; padding: 16px 0; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+.faq summary::after { content: "+"; font-size: 1.4rem; line-height: 1; color: var(--accent); }
+.faq details[open] summary::after { content: "–"; }
+.faq p { margin: 0 0 16px; color: var(--zacht); }
+
+/* Slot & footer */
+.slot { background: var(--accent); color: #fff; padding: 56px 0; text-align: center; }
+.slot h2 { color: #fff; }
+.footer { background: var(--merk); color: #cfd8e3; padding: 48px 0 24px; font-size: .9rem; }
+.footer h4 { color: #fff; margin: 0 0 10px; text-transform: uppercase; font-size: .8rem; letter-spacing: .1em; }
+.footer a { color: #cfd8e3; }
+.footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.footer__onder { border-top: 1px solid rgba(255,255,255,.15); margin-top: 32px; padding-top: 16px; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; }
+
+/* Responsief */
+@media (max-width: 900px) {
+  .hero__in, .calc, .twee, .kh { grid-template-columns: 1fr; }
+  .grid4 { grid-template-columns: repeat(2, 1fr); }
+  .open-status { display: none; }
+  .menuknop { display: block; margin-left: auto; min-height: 40px; background: none; border: 1px solid var(--lijn); border-radius: 8px; padding: 0 12px; font: inherit; }
+  .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--wit); flex-direction: column; padding: 16px; border-bottom: 1px solid var(--lijn); }
+  .nav.open { display: flex; }
+  .header__in > .knop { display: none; }
+}
+@media (max-width: 560px) {
+  .rij, .vinkjes { grid-template-columns: 1fr; }
+  .segment { grid-template-columns: repeat(2, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Beheer · USTAM Döner</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="site-data.js"></script>
+  <style>
+    body { background: var(--creme); }
+    .kaart { background: var(--wit); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 6px 4px; border-bottom: 1px solid var(--lijn); }
+    th { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--zacht); }
+    input { width: 100%; font: inherit; padding: 8px 10px; border: 1px solid var(--lijn); border-radius: 8px; background: #fff; }
+    input[type="number"] { max-width: 110px; }
+    .tabel { overflow-x: auto; }
+    .melding { background: #ebfbee; border: 1px solid #b2f2bb; padding: 12px 16px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+  <div class="demobalk">Demo-beheer: wijzigingen blijven alleen in deze browser. Met "Exporteer" download je het bestand om de site echt bij te werken.</div>
+  <main class="sectie"><div class="wrap smal">
+    <p class="eyebrow">BEHEER</p>
+    <h1>Menukaart en prijzen</h1>
+    <p class="intro">Pas een prijs of naam aan en klik op Opslaan. De site toont het direct.</p>
+    <div id="secties"></div>
+    <div class="knoppen">
+      <button class="knop" id="opslaan" type="button">Opslaan en bekijken</button>
+      <button class="knop knop--licht" id="export" type="button">Exporteer site-data.js</button>
+      <button class="knop knop--licht" id="reset" type="button">Terug naar origineel</button>
+    </div>
+    <p class="melding" id="melding" role="status" hidden></p>
+  </div></main>
+  <script>
+  (function () {
+    let S;
+    try { S = JSON.parse(localStorage.getItem("ustam-site-data")) || window.SITE; } catch (e) { S = window.SITE; }
+    S = JSON.parse(JSON.stringify(S));
+    const $ = (s) => document.querySelector(s);
+    const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const num = (v, pad) => `<input type="number" step="0.05" min="0" value="${v}" data-pad="${pad}" aria-label="Prijs">`;
+    const tekst = (v, pad) => `<input value="${esc(v)}" data-pad="${pad}" aria-label="Naam">`;
+
+    $("#secties").innerHTML =
+      `<section class="kaart"><h2>Döner</h2><div class="tabel"><table><thead><tr><th>Gerecht</th><th>Vlees €</th><th>Kip €</th></tr></thead><tbody>` +
+      S.doner.map((g, i) => `<tr><td>${tekst(g.naam, `doner.${i}.naam`)}</td><td>${num(g.vlees, `doner.${i}.vlees`)}</td><td>${num(g.kip, `doner.${i}.kip`)}</td></tr>`).join("") +
+      `</tbody></table></div></section>` +
+      S.menu.map((c, ci) => `<section class="kaart"><h2>${esc(c.titel)}</h2><div class="tabel"><table><thead><tr><th>Naam</th><th>Prijs €</th></tr></thead><tbody>` +
+        c.items.map((it, ii) => `<tr><td>${tekst(it.naam, `menu.${ci}.items.${ii}.naam`)}</td><td>${num(it.prijs, `menu.${ci}.items.${ii}.prijs`)}</td></tr>`).join("") +
+        `</tbody></table></div></section>`).join("");
+
+    function lees() {
+      document.querySelectorAll("[data-pad]").forEach((el) => {
+        const delen = el.dataset.pad.split("."), sleutel = delen.pop();
+        const doel = delen.reduce((o, k) => o[k], S);
+        doel[sleutel] = el.type === "number" ? Math.round(parseFloat(el.value || 0) * 100) / 100 : el.value.trim();
+      });
+    }
+    const melding = (t) => { const m = $("#melding"); m.hidden = false; m.textContent = t; };
+    $("#opslaan").onclick = () => {
+      lees();
+      try { localStorage.setItem("ustam-site-data", JSON.stringify(S)); location.href = "index.html#menu"; }
+      catch (e) { melding("Opslaan lukt niet in deze browser. Gebruik Exporteer."); }
+    };
+    $("#export").onclick = () => {
+      lees();
+      const blob = new Blob(["window.SITE = " + JSON.stringify(S, null, 2) + ";\n"], { type: "text/javascript" });
+      const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: "site-data.js" });
+      a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+      melding("site-data.js gedownload. Vervang daarmee het bestand op de server.");
+    };
+    $("#reset").onclick = () => { try { localStorage.removeItem("ustam-site-data"); } catch (e) {} location.reload(); };
+  })();
+  </script>
+</body>
+</html>

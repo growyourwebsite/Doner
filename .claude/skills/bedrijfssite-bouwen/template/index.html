@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zakelijk leasen zonder gedoe | Voorbeeld Autolease</title>
+  <meta name="description" content="Lease een jonge occasion voor één vast bedrag per maand, all-in. Bereken direct uw maandbedrag en vraag vrijblijvend aan.">
+  <meta name="robots" content="noindex"><!-- demo: verwijderen bij livegang -->
+  <meta property="og:title" content="Zakelijk leasen zonder gedoe">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="styles.css">
+  <script src="site-data.js"></script>
+</head>
+<body>
+  <div id="demobalk" class="demobalk" hidden></div>
+
+  <header class="header">
+    <div class="wrap header__in">
+      <a href="#top" class="logo" id="logo"></a>
+      <nav class="nav" id="nav" aria-label="Hoofdmenu"></nav>
+      <span class="open-status" id="open-status" aria-live="polite"></span>
+      <a href="#aanvragen" class="knop knop--klein">Aanvragen</a>
+      <button class="menuknop" id="menuknop" aria-expanded="false" aria-controls="nav">Menu</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero__in">
+        <div>
+          <p class="eyebrow" data-veld="hero.eyebrow"></p>
+          <h1 data-veld="hero.kop"></h1>
+          <p class="lead" data-veld="hero.tekst"></p>
+          <div class="knoppen" id="hero-knoppen"></div>
+          <p class="drempel" data-veld="hero.drempel"></p>
+        </div>
+        <aside class="uitgelicht" id="uitgelicht" aria-label="Uitgelicht"></aside>
+      </div>
+    </section>
+
+    <section class="cijfers" aria-label="Kerncijfers"><div class="wrap grid4" id="kerncijfers"></div></section>
+
+    <section class="sectie" id="aanbod">
+      <div class="wrap">
+        <h2 data-veld="aanbodTitel"></h2>
+        <p class="intro" data-veld="aanbodIntro"></p>
+        <div class="tabs" role="tablist" id="filters"></div>
+        <div class="kaarten" id="kaarten"></div>
+      </div>
+    </section>
+
+    <section class="sectie sectie--licht" id="bereken">
+      <div class="wrap">
+        <p class="eyebrow">LEASECALCULATOR</p>
+        <h2 data-veld="calculator.titel"></h2>
+        <div class="calc">
+          <form class="calc__invoer" id="calc" onsubmit="return false">
+            <label>Auto <select id="calc-product"></select></label>
+            <fieldset><legend>Looptijd in maanden</legend><div class="segment" id="calc-looptijd"></div></fieldset>
+            <label>Kilometers per jaar: <strong id="calc-km-label"></strong>
+              <input type="range" id="calc-km"></label>
+            <p class="klein" id="calc-km-uitleg"></p>
+          </form>
+          <div class="calc__uitkomst" aria-live="polite">
+            <p class="eyebrow">UW INDICATIE</p>
+            <h3 id="calc-naam"></h3>
+            <p class="bedrag"><span id="calc-totaal"></span> <small>p/m excl. btw</small></p>
+            <p class="klein" id="calc-incl"></p>
+            <dl class="opbouw" id="calc-opbouw"></dl>
+            <ul class="vinkjes" id="calc-inbegrepen"></ul>
+            <a class="knop" id="calc-cta" href="#aanvragen">Vraag deze lease aan</a>
+            <p class="klein" data-veld="calculator.kleineLetters"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sectie" id="keuzehulp">
+      <div class="wrap">
+        <h2 data-veld="keuzehulp.titel"></h2>
+        <div id="kh-vragen" class="kh"></div>
+        <div id="kh-resultaat" class="kaarten" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section class="sectie sectie--licht">
+      <div class="wrap twee">
+        <div><p class="eyebrow">WAAROM BIJ ONS</p><h2>Wat u van ons krijgt</h2><ul class="voordelen" id="voordelen"></ul></div>
+        <div><p class="eyebrow">OVER ONS</p><div class="grid2" id="over-ons"></div>
+          <h3 class="mt">Aangesloten en ingeschreven</h3><ul class="keurmerken" id="keurmerken"></ul></div>
+      </div>
+    </section>
+
+    <section class="sectie" id="werkwijze">
+      <div class="wrap"><p class="eyebrow">ZO WERKT HET</p><h2>Van aanvraag tot sleutel</h2><ol class="stappen" id="stappen"></ol></div>
+    </section>
+
+    <section class="sectie sectie--licht" id="aanvragen">
+      <div class="wrap smal">
+        <p class="eyebrow">AANVRAGEN</p>
+        <h2>Vraag direct aan, vrijblijvend</h2>
+        <p>U vraagt online aan in twee minuten. Daarna nemen wij contact met u op. Velden met * zijn verplicht.</p>
+        <form class="formulier" id="aanvraag" data-demo novalidate>
+          <input type="text" name="website" class="honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <label>Gewenste auto <select name="auto" id="f-auto"></select></label>
+          <div class="rij">
+            <label>Looptijd <select name="looptijd" id="f-looptijd"></select></label>
+            <label>Kilometers per jaar <input name="km" id="f-km" inputmode="numeric"></label>
+          </div>
+          <div class="rij">
+            <label>Bedrijfsnaam* <input name="bedrijf" required autocomplete="organization"></label>
+            <label>KvK-nummer* <input name="kvk" required pattern="[0-9]{8}" inputmode="numeric" title="8 cijfers"></label>
+          </div>
+          <div class="rij">
+            <label>Voornaam* <input name="voornaam" required autocomplete="given-name"></label>
+            <label>Achternaam* <input name="achternaam" required autocomplete="family-name"></label>
+          </div>
+          <div class="rij">
+            <label>Telefoon* <input name="telefoon" type="tel" required autocomplete="tel" pattern="(\+31|0031|0)[1-9][0-9 \-]{7,11}"></label>
+            <label>E-mail* <input name="email" type="email" required autocomplete="email"></label>
+          </div>
+          <label>Opmerking (optioneel) <textarea name="opmerking" rows="3"></textarea></label>
+          <label class="check"><input type="checkbox" name="akkoord" required> Ik ga ermee akkoord dat mijn gegevens worden gebruikt om deze aanvraag te beoordelen.*</label>
+          <button class="knop" type="submit">Aanvraag versturen</button>
+          <p class="klein">Uw gegevens gebruiken wij alleen hiervoor. <a href="#privacy">Zo gaan wij met uw gegevens om.</a></p>
+          <p class="melding" id="f-melding" role="status" hidden></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="sectie" id="vragen">
+      <div class="wrap smal"><p class="eyebrow">VRAGEN</p><h2>Goed om te weten</h2><div class="faq" id="faq"></div></div>
+    </section>
+
+    <section class="slot"><div class="wrap"><h2 id="slot-kop"></h2><a class="knop knop--wit" id="slot-cta"></a></div></section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap grid4" id="footer"></div>
+    <div class="wrap footer__onder" id="footer-onder"></div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
